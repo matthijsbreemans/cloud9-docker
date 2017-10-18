@@ -3,16 +3,16 @@
 # ------------------------------------------------------------------------------
 # Pull base image.
 FROM kdelfour/supervisor-docker
-MAINTAINER Kevin Delfour <kevin@delfour.eu>
+MAINTAINER Matthijs Breemans
 
 # ------------------------------------------------------------------------------
 # Install base
 RUN apt-get update
-RUN apt-get install -y build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs
+RUN apt-get install -y build-essential g++ curl libssl-dev apache2-utils git libxml2-dev sshfs nginx
 
 # ------------------------------------------------------------------------------
 # Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup | bash -
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs
     
 # ------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # ------------------------------------------------------------------------------
 # Expose ports.
 EXPOSE 80
-EXPOSE 3000
+#EXPOSE 3000
 
 # ------------------------------------------------------------------------------
 # Start supervisor, define default command.
